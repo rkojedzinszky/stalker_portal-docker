@@ -1,0 +1,53 @@
+--- build.xml	2017-05-01 18:25:33.331840276 +0200
++++ build.xml.run	2017-05-01 20:05:05.254527820 +0200
+@@ -191,6 +191,7 @@
+             </then>
+         </if>
+ 
++	<!--
+         <php expression="ini_get('extension_dir');" returnProperty="extension_dir"/>
+ 
+         <echo msg="PHP extension dir: ${extension_dir}" level="info"/>
+@@ -260,6 +261,7 @@
+                 </if>
+             </then>
+         </if>
++	-->
+ 
+         <exec command="mkdir -p --mode=0777 ${project_path}/screenshots" level="info"/>
+         <exec command="mkdir -p --mode=0777 ${project_path}/misc/logos" level="info"/>
+@@ -282,6 +284,7 @@
+         <exec command="mkdir ${project_path}/../${launcher_apps_path}" level="info"/>
+         <chmod file="${project_path}/../${launcher_apps_path}" mode="0777" />
+ 
++	<!--
+         <exec command="php ${project_path}/deploy/composer/composer.phar self-update" level="info" outputProperty="install.error.msg" returnProperty="install.error.code"/>
+         <exec command="rm -f ${project_path}/deploy/composer.lock" level="info"/>
+         <exec command="php ${project_path}/deploy/composer/composer.phar install" level="info" outputProperty="install.error.msg" returnProperty="install.error.code"/>
+@@ -294,10 +297,12 @@
+                 <echo msg="${install.error.msg}" level="warning"/>
+             </then>
+         </if>
++	-->
+ 
+         <exec command="cd ${project_path}/server/tools/; php ./init_apps.php; chown -R www-data:www-data ${project_path}/../${launcher_apps_path}" level="info"/>
+         <exec command="cd ${project_path}/server/tasks/; php ./reset_paused.php nodelay" level="info"/>
+ 
++	<!--
+         <echo msg="Now you will be asked to specify MySQL root password." level="warning"/>
+ 
+         <exec command="mysql_tzinfo_to_sql /usr/share/zoneinfo 2>/dev/null | mysql -u root -p mysql" level="info" outputProperty="zoneinfo.error.msg" returnProperty="zoneinfo.error.code"/>
+@@ -312,10 +317,11 @@
+         </if>
+ 
+         <exec command="/etc/init.d/apache2 restart" level="info"/>
++	-->
+ 
+         <exec command="mkdir /var/log/stalkerd" level="info"/>
+         <chmod file="/var/log/stalkerd" mode="0777" />
+ 
+     </target>
+ 
+-</project>
+\ Nincs új sor a fájl végén
++</project>

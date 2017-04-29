@@ -1,0 +1,60 @@
+--- build.xml	2017-05-01 18:25:33.331840276 +0200
++++ build.xml.image	2017-05-01 18:25:12.980453251 +0200
+@@ -20,9 +20,11 @@
+             </then>
+         </if>
+ 
++	<!--
+         <taskdef
+                 name="dbdeploy"
+                 classname="phing.tasks.ext.dbdeploy.DbDeployTask"/>
++	-->
+ 
+         <property
+                 name="progs.mysql"
+@@ -87,6 +89,7 @@
+ 
+         <copy file="./src/stalkerd" tofile="/etc/logrotate.d/stalkerd" overwrite="true"/>
+ 
++	<!--
+         <copy file="./src/init_db.sql" tofile="/tmp/init_db.sql" overwrite="true">
+             <filterchain>
+                 <replacetokens>
+@@ -110,8 +113,10 @@
+                 </replaceregexp>
+             </filterchain>
+         </property>
++	-->
+ 
+         <property name="protocol_str" value="--protocol=TCP"/>
++	<!--
+         <if>
+             <and>
+                 <equals arg1="${mysql_host}" arg2="localhost"/>
+@@ -169,6 +174,7 @@
+                 <fail message="DbDeployTask failed."/>
+             </then>
+         </if>
++	-->
+ 
+         <echo msg="${project_path}"/>
+ 
+@@ -295,6 +301,7 @@
+             </then>
+         </if>
+ 
++	<!--
+         <exec command="cd ${project_path}/server/tools/; php ./init_apps.php; chown -R www-data:www-data ${project_path}/../${launcher_apps_path}" level="info"/>
+         <exec command="cd ${project_path}/server/tasks/; php ./reset_paused.php nodelay" level="info"/>
+ 
+@@ -315,7 +322,8 @@
+ 
+         <exec command="mkdir /var/log/stalkerd" level="info"/>
+         <chmod file="/var/log/stalkerd" mode="0777" />
++	-->
+ 
+     </target>
+ 
+-</project>
+\ Nincs új sor a fájl végén
++</project>
