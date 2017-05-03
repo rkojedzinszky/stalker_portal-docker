@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Richard Kojedzinszky <krichy@nmdps.net>
 
-ENV STALKER_VERSION=master
+ENV STALKER_VERSION=v5.1.1
 
 RUN apt-get update && apt-get dist-upgrade -f -y && \
 	apt-get install -y apache2 php5 php5-dev php5-mysql php-pear nodejs libapache2-mod-rpaf nodejs npm curl && \
